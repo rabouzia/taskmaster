@@ -31,6 +31,11 @@ struct Daemon {
 
 fn load_config() -> Vec<Daemon> {
     // TODO: Parse a config file and return list of Daemon tasks
+	let content = fs::read_to_string("config.toml")
+		.expect("Failed to read config file");
+	serde_yaml::from_str(&content)
+		.expect("Failed to parse config file");
+	
     Vec::new()
 }
 
